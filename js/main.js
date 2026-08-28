@@ -146,17 +146,44 @@ function runTerminal() {
 function heroEntrance() {
   if (REDUCED) return;
 
-  // name: split into chars and cascade in
+  // name: split into chars and cascade in.
+  // NOTE: background-clip:text does NOT survive the split — anime.js wraps
+  // each char in an inline-block span, so the parent gradient stops painting
+  // and the inherited transparent fill makes the text invisible. We repaint
+  // the gradient per-char below (and CSS has a solid-color fallback).
   const nameEl = $('#heroName');
-  const splitter = text.split(nameEl, { chars: true });
-  animate(splitter.chars, {
-    opacity: [0, 1],
-    translateY: ['1.1em', 0],
-    rotateX: [90, 0],
-    duration: 700,
-    ease: 'outExpo',
-    delay: stagger(28),
-  });
+  let chars;
+  try {
+    const splitter = text.split(nameEl, { chars: true });
+    chars = splitter.chars;
+  } catch {
+    chars = [];
+  }
+
+  if (chars.length) {
+    // recreate the CSS gradient (fg → green, 55%→90%) across the chars
+    const from = [230, 237, 243]; // --fg
+    const to = [63, 220, 139];    // --green
+    chars.forEach((ch, i) => {
+      const t = chars.length > 1 ? i / (chars.length - 1) : 1;
+      const tt = Math.min(1, Math.max(0, (t - 0.55) / 0.35));
+      const c = from.map((f, k) => Math.round(f + (to[k] - f) * tt));
+      const col = `rgb(${c[0]}, ${c[1]}, ${c[2]})`;
+      ch.style.color = col;
+      ch.style.webkitTextFillColor = col;
+    });
+    animate(chars, {
+      opacity: [0, 1],
+      translateY: ['1.1em', 0],
+      rotateX: [90, 0],
+      duration: 700,
+      ease: 'outExpo',
+      delay: stagger(28),
+    });
+  } else {
+    // split unavailable — fade the whole name in, gradient intact
+    animate(nameEl, { opacity: [0, 1], translateY: [20, 0], duration: 800, ease: 'outExpo' });
+  }
 
   createTimeline({ defaults: { ease: 'outQuad' } })
     .add('.hero-kicker',   { opacity: [0, 1], translateY: [12, 0], duration: 500 }, 200)

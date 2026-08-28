@@ -209,6 +209,13 @@ ul, ol { list-style: none; }
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
 }
+/* safety net: anime.js split spans (data-char attribute, no class) inherit
+   the transparent text-fill from the gradient clip — force them visible;
+   JS then repaints the gradient per-char inline */
+.hero-name [data-char], .hero-name [data-word], .hero-name ._char_, .hero-name .char {
+  color: var(--fg);
+  -webkit-text-fill-color: var(--fg);
+}
 .hero-role { font-size: clamp(16px, 1.6vw, 19px); color: var(--fg-dim); max-width: 34ch; margin-bottom: 30px; }
 .hero-role strong, .hero-role .hl-green, .hero-role .hl-amber, .hero-role .hl-cyan { font-weight: 600; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 34px; }
