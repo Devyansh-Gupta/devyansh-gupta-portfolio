@@ -420,6 +420,8 @@ html.no-motion [data-reveal] { opacity: 1; transform: none; }
   display: inline-block; transition: transform .2s ease;
 }
 .proj-link:hover { transform: translateX(4px); }
+.proj-link-dim { color: var(--fg-faint); cursor: default; font-style: italic; }
+.proj-link-dim:hover { transform: none; }
 
 /* ── publications ───────────────────────────────────────── */
 .pubs { display: grid; gap: 16px; }
@@ -438,7 +440,15 @@ html.no-motion [data-reveal] { opacity: 1; transform: none; }
   letter-spacing: 0.08em; text-transform: uppercase;
 }
 .pub h3 { font-size: 17px; font-weight: 600; line-height: 1.45; margin-bottom: 8px; }
+.pub h3 a { color: var(--fg); transition: color .2s ease; }
+.pub h3 a:hover { color: var(--amber); }
 .pub-authors { font-family: var(--mono); font-size: 13px; color: var(--fg-faint); }
+.pub-link {
+  display: inline-block; margin-top: 10px;
+  font-family: var(--mono); font-size: 12.5px; color: var(--amber);
+  transition: transform .2s ease, color .2s ease;
+}
+.pub-link:hover { transform: translateX(4px); color: var(--fg); }
 
 /* ── education ──────────────────────────────────────────── */
 .edu-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(24px, 4vw, 48px); }
@@ -455,6 +465,14 @@ html.no-motion [data-reveal] { opacity: 1; transform: none; }
 .edu-meta { font-family: var(--mono); font-size: 12.5px; color: var(--fg-faint); margin-top: 6px; }
 .cert { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px dashed var(--line); }
 .cert:last-child { border-bottom: none; }
+a.cert { border-radius: 8px; transition: background .2s ease, transform .2s ease; }
+a.cert:hover { background: var(--bg-raise); transform: translateX(5px); }
+a.cert:hover .cert-badge { box-shadow: 0 0 16px -2px rgba(255,180,84,0.45); }
+.certs-all {
+  font-size: 11px; font-weight: 600; color: var(--cyan);
+  margin-left: 8px; letter-spacing: 0.02em; white-space: nowrap;
+}
+.certs-all:hover { text-decoration: underline; }
 .cert-badge {
   flex-shrink: 0; width: 40px; height: 40px; border-radius: 9px;
   display: grid; place-items: center;
