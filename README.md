@@ -12,11 +12,18 @@ api/                                             managed functions (Node 20)
 staticwebapp.config.json     routes, headers, apiRuntime
 ```
 
-### Resume download (security model)
-The resume PDF lives in a **private** blob container. `/api/resume` mints a
-read-only, single-blob, HTTPS-only service SAS valid ~10 minutes and redirects
-the visitor — per Microsoft's SAS best practices (least privilege, short
-lifetime, no key in the browser).
+### Resume download (two options)
+**Option A — manual link (simplest):** paste your Azure Blob Storage
+pre-signed (SAS) URL into the `RESUME_URL` constant at the top of
+`js/main.js`. All three resume buttons will point straight at it.
+
+**Option B — server-minted SAS:** keep the resume PDF in a **private** blob
+container; `/api/resume` mints a read-only, single-blob, HTTPS-only SAS valid
+~10 minutes and redirects the visitor — per Microsoft's SAS best practices
+(least privilege, short lifetime, no key in the browser).
+
+While neither is configured, buttons fall back to the bundled PDF at
+`/assets/Devyansh_Gupta_Resume_DevOps_Intern.pdf`.
 
 ## Required app settings (SWA → Configuration)
 

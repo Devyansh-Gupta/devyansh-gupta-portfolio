@@ -9,6 +9,15 @@ import {
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (REDUCED) document.documentElement.classList.add('no-motion');
 
+/* ══════════════════════════════════════════════════════════
+   RESUME LINK — paste your Azure Blob Storage pre-signed
+   (SAS) URL between the quotes below, e.g.:
+   "https://<account>.blob.core.windows.net/resume/Devyansh_Gupta_Resume_DevOps_Intern.pdf?sv=2022-11-02&ss=b&srt=o&sp=r&se=...&sig=..."
+   While it's empty, buttons try /api/resume (server-side SAS)
+   and fall back to the bundled PDF copy.
+   ══════════════════════════════════════════════════════════ */
+const RESUME_URL = "";
+
 /* ────────────────────────────────────────────────────────────
    0. Small utilities
    ──────────────────────────────────────────────────────────── */
@@ -353,20 +362,26 @@ function contactForm() {
 }
 
 /* ────────────────────────────────────────────────────────────
-   10. Resume buttons — graceful fallback if API is absent
-       (e.g. local preview without functions runtime)
+   10. Resume buttons
+       Priority: RESUME_URL (your pasted SAS link) → /api/resume
+       (server-minted SAS) → bundled PDF fallback.
    ──────────────────────────────────────────────────────────── */
 function resumeButtons() {
   $$('[data-resume]').forEach(btn => {
+    // 1) explicit SAS link pasted in main.js
+    if (RESUME_URL) {
+      btn.setAttribute('href', RESUME_URL);
+      btn.setAttribute('target', '_blank');
+      btn.setAttribute('rel', 'noopener');
+      return;
+    }
+    // 2) try the API; 3) fall back to bundled copy
     btn.addEventListener('click', async e => {
-      // let the link navigate normally; only intercept to detect a dead API locally
       try {
-        const res = await fetch(btn.getAttribute('href'), { method: 'HEAD', redirect: 'manual' });
-        // 302/200 → real endpoint exists; allow default navigation
-        if (res.ok || res.type === 'opaqueredirect' || res.status === 302) return;
+        const res = await fetch('/api/resume', { method: 'HEAD', redirect: 'manual' });
+        if (res.ok || res.type === 'opaqueredirect' || res.status === 302) return; // let it navigate
         throw new Error(res.status);
       } catch {
-        // local dev without functions → fall back to bundled copy
         e.preventDefault();
         const a = document.createElement('a');
         a.href = '/assets/Devyansh_Gupta_Resume_DevOps_Intern.pdf';
