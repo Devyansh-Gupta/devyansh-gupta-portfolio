@@ -1,0 +1,23 @@
+{
+  "platform": {
+    "apiRuntime": "node:20"
+  },
+  "routes": [
+    { "route": "/api/contact", "methods": ["POST"] },
+    { "route": "/api/resume", "methods": ["GET"] }
+  ],
+  "navigationFallback": {
+    "index": "/index.html",
+    "exclude": ["/assets/*", "/css/*", "/js/*", "/vendor/*"]
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "geolocation=(), microphone=(), camera=()"
+  },
+  "mimeTypes": {
+    ".webp": "image/webp",
+    ".json": "application/json"
+  }
+}

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Devyansh Gupta — DevOps &amp; Cloud Engineer</title>
+  <meta name="description" content="Devyansh Gupta — MCA (Storage & Cloud Technology), AWS Academy trained, Q1-published cloud-security researcher. Seeking a DevOps Engineering Internship." />
+  <meta name="theme-color" content="#0a0e14" />
+  <meta property="og:title" content="Devyansh Gupta — DevOps & Cloud Engineer" />
+  <meta property="og:description" content="Cloud infrastructure, CI/CD automation, and backend engineering. Bengaluru, India." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/og-image.png" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <div class="crt" aria-hidden="true"></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <!-- ══════════════ NAV ══════════════ -->
+  <header class="nav" id="nav">
+    <a class="nav-logo" href="#top" aria-label="Home">
+      <span class="nav-logo-user">devyansh</span><span class="nav-logo-at">@</span><span class="nav-logo-host">cloud</span><span class="nav-logo-path">:~$</span><span class="cursor" aria-hidden="true">▊</span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#publications">publications</a>
+      <a href="#contact">contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-small btn-outline" data-resume href="/api/resume">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16"/></svg>
+        resume.pdf
+      </a>
+      <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ══════════════ HERO ══════════════ -->
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <div class="hero-terminal-wrap">
+          <div class="terminal" id="heroTerminal" role="img" aria-label="Terminal introducing Devyansh Gupta">
+            <div class="terminal-bar">
+              <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+              <span class="terminal-title">devyansh@bengaluru — ssh</span>
+            </div>
+            <div class="terminal-body" id="terminalBody"></div>
+          </div>
+        </div>
+
+        <div class="hero-id">
+          <p class="hero-kicker">// devops · cloud · storage</p>
+          <h1 class="hero-name" id="heroName">DEVYANSH GUPTA</h1>
+          <p class="hero-role">
+            I build the <span class="hl-green">pipelines</span>, <span class="hl-amber">infrastructure</span> and
+            <span class="hl-cyan">backends</span> that ship software while you sleep.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" data-resume href="/api/resume">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16"/></svg>
+              Download Resume
+            </a>
+            <a class="btn btn-ghost" href="#contact">./contact --me</a>
+          </div>
+          <ul class="hero-meta" aria-label="Quick facts">
+            <li><span class="meta-k">location</span><span class="meta-v">Bengaluru, IN</span></li>
+            <li><span class="meta-k">focus</span><span class="meta-v">Storage &amp; Cloud Tech</span></li>
+            <li><span class="meta-k">status</span><span class="meta-v meta-open">● open to internships</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CI/CD pipeline animation -->
+      <div class="pipeline" id="pipeline" aria-label="Animated CI/CD pipeline: commit, build, test, deploy">
+        <div class="pipe-node" data-node="commit">
+          <div class="pipe-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="6" cy="6" r="2.6"/><circle cx="6" cy="18" r="2.6"/><circle cx="18" cy="12" r="2.6"/><path d="M8.4 7.2c3 1.2 4.2 2.4 6.8 3.8M8.4 16.8c3-1.2 4.2-2.4 6.8-3.8"/></svg>
+          </div>
+          <span class="pipe-label">commit</span>
+        </div>
+        <div class="pipe-line"><span class="pipe-pulse"></span></div>
+        <div class="pipe-node" data-node="build">
+          <div class="pipe-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3 4 7v10l8 4 8-4V7l-8-4Z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg>
+          </div>
+          <span class="pipe-label">build</span>
+        </div>
+        <div class="pipe-line"><span class="pipe-pulse"></span></div>
+        <div class="pipe-node" data-node="test">
+          <div class="pipe-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 8.5A2 2 0 0 0 6.7 21h10.6a2 2 0 0 0 1.7-3.5L14 9V3"/><path d="M7.5 15h9"/></svg>
+          </div>
+          <span class="pipe-label">test</span>
+        </div>
+        <div class="pipe-line"><span class="pipe-pulse"></span></div>
+        <div class="pipe-node" data-node="deploy">
+          <div class="pipe-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4.5 16.5 3 21l4.5-1.5M12 15l-3-3 6.5-8.5a2.1 2.1 0 0 1 3 3L12 15Zm-3-3L4 14l2-4m9 5 2-4-4 2"/></svg>
+          </div>
+          <span class="pipe-label">deploy</span>
+        </div>
+      </div>
+
+      <!-- stats -->
+      <div class="stats" id="stats">
+        <div class="stat"><span class="stat-n" data-count="8.17" data-decimals="2">0</span><span class="stat-l">MCA CGPA / 10</span></div>
+        <div class="stat"><span class="stat-n"><span data-count="175">0</span>+</span><span class="stat-l">automated tests in CI</span></div>
+        <div class="stat"><span class="stat-n" data-count="2">0</span><span class="stat-l">research publications</span></div>
+        <div class="stat"><span class="stat-n" data-count="4">0</span><span class="stat-l">production-style projects</span></div>
+      </div>
+    </section>
+
+    <!-- ══════════════ MARQUEE ══════════════ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marqueeTrack">
+        <span>AWS</span><i>◆</i><span>DOCKER</span><i>◆</i><span>JENKINS</span><i>◆</i><span>CI/CD</span><i>◆</i><span>PYTHON</span><i>◆</i><span>SQL</span><i>◆</i><span>GIT</span><i>◆</i><span>GITHUB ACTIONS</span><i>◆</i><span>SUPABASE</span><i>◆</i><span>TCP/IP</span><i>◆</i><span>IAM &amp; VPC</span><i>◆</i><span>PEN-TESTING</span><i>◆</i>
+      </div>
+    </div>
+
+    <!-- ══════════════ ABOUT ══════════════ -->
+    <section class="section" id="about">
+      <div class="section-head" data-reveal>
+        <span class="section-idx">01</span>
+        <h2 class="section-title">whoami</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="about-grid">
+        <figure class="photo-frame" data-reveal>
+          <div class="terminal photo-terminal">
+            <div class="terminal-bar">
+              <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+              <span class="terminal-title">~/photos/devyansh.png</span>
+            </div>
+            <div class="photo-viewport">
+              <picture>
+                <source srcset="/assets/photo.webp" type="image/webp" />
+                <img src="/assets/photo.jpg" alt="Portrait of Devyansh Gupta" width="900" height="1600" loading="lazy" />
+              </picture>
+              <div class="photo-scan" aria-hidden="true"></div>
+            </div>
+          </div>
+          <figcaption class="photo-cap">$ display devyansh.png — <span class="hl-green">rendered OK</span></figcaption>
+        </figure>
+
+        <div class="about-copy">
+          <p class="lead" data-reveal>
+            MCA candidate specializing in <strong>Storage &amp; Cloud Technology</strong> with
+            <strong>AWS Academy Solutions Architect</strong> training, hands-on <strong>CI/CD pipeline</strong>
+            exposure, and <strong>Python/SQL</strong> development experience.
+          </p>
+          <p data-reveal>
+            I'm the person who reads the AWS Well-Architected guide for fun, writes golden-test suites before
+            writing features, and once led a four-intern team to ship an internal business tool end-to-end.
+            My research on cloud forensics made it into a <strong>Q1 journal</strong> — because security and
+            infrastructure aren't separate jobs, they're the same job.
+          </p>
+          <p data-reveal>
+            Right now I'm looking for a <strong class="hl-green">DevOps Engineering Internship</strong> where I can
+            build on cloud-infrastructure, automation, and backend fundamentals — and leave every pipeline
+            faster than I found it.
+          </p>
+          <div class="about-tags" data-reveal>
+            <span class="tag">cloud infrastructure</span>
+            <span class="tag">automation</span>
+            <span class="tag">backend</span>
+            <span class="tag">security</span>
+            <span class="tag">team leadership</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ SKILLS ══════════════ -->
+    <section class="section" id="skills">
+      <div class="section-head" data-reveal>
+        <span class="section-idx">02</span>
+        <h2 class="section-title">ls ./skills</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card" data-reveal>
+          <h3><span class="prompt">$</span> cloud &amp; infrastructure</h3>
+          <div class="chips">
+            <span class="chip">AWS — Academy Solutions Architect</span>
+            <span class="chip">Compute · Storage</span>
+            <span class="chip">IAM &amp; VPC</span>
+            <span class="chip">Cloud Architecture</span>
+            <span class="chip">CI/CD Pipelines</span>
+          </div>
+        </div>
+        <div class="skill-card" data-reveal>
+          <h3><span class="prompt">$</span> programming &amp; scripting</h3>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">SQL</span>
+            <span class="chip">JavaScript (React)</span>
+            <span class="chip">Scripting &amp; Automation</span>
+          </div>
+        </div>
+        <div class="skill-card" data-reveal>
+          <h3><span class="prompt">$</span> containers &amp; ci/cd</h3>
+          <div class="chips">
+            <span class="chip">Docker</span>
+            <span class="chip">Jenkins</span>
+            <span class="chip">GitHub Actions</span>
+            <span class="chip">Build &amp; Release</span>
+          </div>
+        </div>
+        <div class="skill-card" data-reveal>
+          <h3><span class="prompt">$</span> devops &amp; tooling</h3>
+          <div class="chips">
+            <span class="chip">Git</span>
+            <span class="chip">Jira</span>
+            <span class="chip">CI/CD Concepts</span>
+            <span class="chip">Monorepos (Turborepo)</span>
+          </div>
+        </div>
+        <div class="skill-card" data-reveal>
+          <h3><span class="prompt">$</span> networking</h3>
+          <div class="chips">
+            <span class="chip">Network Architecture — LinkedIn certified</span>
+            <span class="chip">TCP/IP</span>
+            <span class="chip">DNS</span>
+            <span class="chip">HTTP/HTTPS</span>
+          </div>
+        </div>
+        <div class="skill-card" data-reveal>
+          <h3><span class="prompt">$</span> security &amp; testing</h3>
+          <div class="chips">
+            <span class="chip">Penetration Testing</span>
+            <span class="chip">Bug Bounty Hunting</span>
+            <span class="chip">QA &amp; Software Testing</span>
+            <span class="chip">Vulnerability Reporting</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ EXPERIENCE ══════════════ -->
+    <section class="section" id="experience">
+      <div class="section-head" data-reveal>
+        <span class="section-idx">03</span>
+        <h2 class="section-title">tail -f ./experience.log</h2>
+        <span class="section-rule"></span>
+      </div>
+      <ol class="timeline" id="timeline">
+        <li class="tl-item" data-reveal>
+          <div class="tl-marker"></div>
+          <div class="tl-card">
+            <div class="tl-top">
+              <h3>Technical Team Lead (Intern)</h3>
+              <span class="tl-when">Jun 2026 – Aug 2026 · Remote</span>
+            </div>
+            <p class="tl-org">Nexathread Pvt Ltd</p>
+            <ul>
+              <li>Spearheaded an internal business-tool project end-to-end, directing a team of four interns across planning, development, and delivery</li>
+              <li>Coordinated requirements, reviewed progress, and guided implementation decisions as the technical point of contact</li>
+            </ul>
+          </div>
+        </li>
+        <li class="tl-item" data-reveal>
+          <div class="tl-marker"></div>
+          <div class="tl-card">
+            <div class="tl-top">
+              <h3>Executive Member — AWS Club</h3>
+              <span class="tl-when">Jan 2026 – Present · Bengaluru</span>
+            </div>
+            <p class="tl-org">Jain University</p>
+            <ul>
+              <li>Lead cloud-technology workshops and networking events for an AWS-sponsored student cloud community</li>
+            </ul>
+          </div>
+        </li>
+        <li class="tl-item" data-reveal>
+          <div class="tl-marker"></div>
+          <div class="tl-card">
+            <div class="tl-top">
+              <h3>Executive Member — IEEE Student Chapter</h3>
+              <span class="tl-when">Jan 2026 – Present · Bengaluru</span>
+            </div>
+            <p class="tl-org">Jain University</p>
+            <ul>
+              <li>Organized and hosted the IEEE IC-AIDA-2026 international conference; coordinate IEEE-sponsored technical events and workshops</li>
+            </ul>
+          </div>
+        </li>
+        <li class="tl-item" data-reveal>
+          <div class="tl-marker"></div>
+          <div class="tl-card">
+            <div class="tl-top">
+              <h3>Freelance Cybersecurity &amp; Software Testing</h3>
+              <span class="tl-when">2023 · Remote</span>
+            </div>
+            <p class="tl-org">Self-Employed</p>
+            <ul>
+              <li>Conducted penetration testing, bug-bounty hunting, and comprehensive QA for a gamified marketplace platform</li>
+              <li>Identified critical vulnerabilities and delivered actionable security reports that protected client intellectual property</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ══════════════ PROJECTS ══════════════ -->
+    <section class="section" id="projects">
+      <div class="section-head" data-reveal>
+        <span class="section-idx">04</span>
+        <h2 class="section-title">git log --projects</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="projects-grid">
+        <article class="project-card" data-reveal>
+          <div class="proj-head">
+            <svg class="proj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V4a2 2 0 0 0-2-2H6.5A2.5 2.5 0 0 0 4 4.5v15Z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/><path d="M9 7h6M9 11h4"/></svg>
+            <h3>Abhyas</h3>
+            <span class="proj-status status-live">shipped</span>
+          </div>
+          <p class="proj-sub">Study Planner &amp; Revision Platform</p>
+          <p>pnpm + Turborepo monorepo (mobile, web, shared engine, DB package) guarded by ~175 automated tests including golden-test suites. CI/CD on GitHub Actions with typecheck-and-test gates and on-demand signed release-APK builds. Supabase PostgreSQL backend with RLS policies, Google/email-OTP auth, and offline-first SQLite sync.</p>
+          <div class="chips chips-sm">
+            <span class="chip">TypeScript</span><span class="chip">React Native / Expo</span><span class="chip">Supabase</span><span class="chip">Turborepo</span><span class="chip">GitHub Actions</span>
+          </div>
+          <a class="proj-link" href="https://github.com/Devyansh-Gupta/abhyas" target="_blank" rel="noopener">github.com/Devyansh-Gupta/abhyas ↗</a>
+        </article>
+
+        <article class="project-card" data-reveal>
+          <div class="proj-head">
+            <svg class="proj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 17l4-6 4 3 5-8 5 7"/><path d="M3 21h18"/></svg>
+            <h3>PolyBot</h3>
+            <span class="proj-status status-live">running</span>
+          </div>
+          <p class="proj-sub">Low-Latency Arbitrage Trading System</p>
+          <p>Market-data engine consuming live WebSocket feeds, maintaining order books with sub-millisecond detection and deterministic replay-based backtesting. Deployed on cloud infrastructure colocated near the exchange; validated through extended paper-trading runs.</p>
+          <div class="chips chips-sm">
+            <span class="chip">Python</span><span class="chip">WebSockets</span><span class="chip">Cloud Deployment</span><span class="chip">Low Latency</span>
+          </div>
+        </article>
+
+        <article class="project-card" data-reveal>
+          <div class="proj-head">
+            <svg class="proj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.3c-1.5 0-3-.4-4.2-1.1L3 20l1.4-4.6A8.2 8.2 0 0 1 3.9 11 8.4 8.4 0 0 1 12.5 3.2 8.4 8.4 0 0 1 21 11.5Z"/><path d="M8.5 10.5h7M8.5 13.5h4"/></svg>
+            <h3>MEDBridge</h3>
+            <span class="proj-status status-live">live</span>
+          </div>
+          <p class="proj-sub">Full-Stack Team Communication App</p>
+          <p>Designed and developed an internal communication platform — conversation threads, channels, and collaboration features — used as a live college convention project.</p>
+          <div class="chips chips-sm">
+            <span class="chip">Full-Stack</span><span class="chip">Threads &amp; Channels</span><span class="chip">Real Users</span>
+          </div>
+        </article>
+
+        <article class="project-card" data-reveal>
+          <div class="proj-head">
+            <svg class="proj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2a4 4 0 0 1 4 4c0 .7-.2 1.4-.5 2H17a4 4 0 0 1 2.5 7.1A4 4 0 0 1 16 21H8a4 4 0 0 1-3.5-5.9A4 4 0 0 1 7 8h1.5A4 4 0 0 1 12 2Z"/><path d="M12 8v8m-3-3 3 3 3-3"/></svg>
+            <h3>InsightForge</h3>
+            <span class="proj-status status-wip">in progress</span>
+          </div>
+          <p class="proj-sub">Multimodal Research Assistant</p>
+          <p>Building a persistent AI research assistant that processes PDFs, research papers, charts, formulas, and screenshots using multimodal LLMs and vector databases.</p>
+          <div class="chips chips-sm">
+            <span class="chip">Multimodal LLMs</span><span class="chip">Vector DBs</span><span class="chip">RAG</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════════ PUBLICATIONS ══════════════ -->
+    <section class="section" id="publications">
+      <div class="section-head" data-reveal>
+        <span class="section-idx">05</span>
+        <h2 class="section-title">man publications</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="pubs">
+        <article class="pub" data-reveal>
+          <div class="pub-badge">Q1 journal · MethodsX · 2026</div>
+          <h3>Forensic Implications of Multi-Tenancy in Cloud Computing: Challenges, Trust Boundaries and an AWS-Based Investigative Framework</h3>
+          <p class="pub-authors">Gupta, D., Bagga, D., Abraham, P.</p>
+        </article>
+        <article class="pub" data-reveal>
+          <div class="pub-badge">framework</div>
+          <h3>CyberJain — Digital Technology Use and Wellbeing Framework</h3>
+          <p class="pub-authors">Abraham, P., Bagga, D., et al. (incl. Gupta, D.)</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════════ EDUCATION + CERTS ══════════════ -->
+    <section class="section" id="education">
+      <div class="section-head" data-reveal>
+        <span class="section-idx">06</span>
+        <h2 class="section-title">cat ./education.conf</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-col" data-reveal>
+          <h3 class="edu-col-title">[education]</h3>
+          <div class="edu-item">
+            <p class="edu-degree">Master of Computer Applications — <em>Storage &amp; Cloud Technology</em></p>
+            <p class="edu-school">JAIN (Deemed-to-be University), Bengaluru</p>
+            <p class="edu-meta"><span class="hl-green">CGPA 8.17 / 10</span> · Aug 2025 – Present</p>
+          </div>
+          <div class="edu-item">
+            <p class="edu-degree">Bachelor of Computer Applications</p>
+            <p class="edu-school">Sailee Degree College, Mumbai</p>
+            <p class="edu-meta">CGPA 7.03 / 10 · Mar 2022 – Jun 2025</p>
+          </div>
+          <div class="edu-item edu-minor">
+            <p class="edu-meta">Class XII — 78.9% (2022) · Class X — 79% (2020)</p>
+          </div>
+        </div>
+        <div class="edu-col" data-reveal>
+          <h3 class="edu-col-title">[certifications]</h3>
+          <div class="cert">
+            <span class="cert-badge">AWS</span>
+            <div><p>Academy Cloud Solutions Architect</p><p class="edu-meta">Training Badge — compute, storage, IAM &amp; VPC</p></div>
+          </div>
+          <div class="cert">
+            <span class="cert-badge">in</span>
+            <div><p>Programming Generative AI</p><p class="edu-meta">LinkedIn Learning</p></div>
+          </div>
+          <div class="cert">
+            <span class="cert-badge">in</span>
+            <div><p>Network Architecture</p><p class="edu-meta">LinkedIn Learning</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ CONTACT ══════════════ -->
+    <section class="section" id="contact">
+      <div class="section-head" data-reveal>
+        <span class="section-idx">07</span>
+        <h2 class="section-title">ping devyansh</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info" data-reveal>
+          <p class="lead">Have a role, a project, or a hard infrastructure problem? My inbox is open.</p>
+          <ul class="contact-list">
+            <li>
+              <a href="mailto:devyanshgupta04@gmail.com">
+                <span class="contact-k">email</span>
+                <span class="contact-v">devyanshgupta04@gmail.com</span>
+              </a>
+            </li>
+            <li>
+              <a href="tel:+919987237913">
+                <span class="contact-k">phone</span>
+                <span class="contact-v">+91 99872 37913</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com/in/devyansh-gupta04" target="_blank" rel="noopener">
+                <span class="contact-k">linkedin</span>
+                <span class="contact-v">/in/devyansh-gupta04 ↗</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/Devyansh-Gupta" target="_blank" rel="noopener">
+                <span class="contact-k">github</span>
+                <span class="contact-v">Devyansh-Gupta ↗</span>
+              </a>
+            </li>
+          </ul>
+          <a class="btn btn-outline" data-resume href="/api/resume">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16"/></svg>
+            grab resume.pdf
+          </a>
+        </div>
+
+        <form class="contact-form" id="contactForm" data-reveal novalidate>
+          <div class="form-row">
+            <label for="cf-name">name <span class="req">*</span></label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="200" placeholder="Jane Recruiter" />
+          </div>
+          <div class="form-row">
+            <label for="cf-email">email <span class="req">*</span></label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="200" placeholder="jane@company.com" />
+          </div>
+          <!-- honeypot: hidden from humans, bots fill it -->
+          <div class="form-row hp-field" aria-hidden="true">
+            <label for="cf-company">company</label>
+            <input id="cf-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+          <div class="form-row">
+            <label for="cf-message">message <span class="req">*</span></label>
+            <textarea id="cf-message" name="message" rows="5" required maxlength="5000" placeholder="We'd love to talk to you about…"></textarea>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit" id="cfSubmit">
+            <span class="btn-label">send --message</span>
+          </button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="footer">
+    <p class="footer-line"><span class="hl-green">$</span> echo "built with plain html, css &amp; js — animated by anime.js v4 — hosted on azure static web apps"</p>
+    <p class="footer-line footer-dim">© <span id="year">2026</span> Devyansh Gupta · <span class="hl-amber">exit 0</span></p>
+  </footer>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
