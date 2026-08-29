@@ -7,7 +7,7 @@
     { "route": "/api/resume", "methods": ["GET"] }
   ],
   "navigationFallback": {
-    "index": "/index.html",
+    "rewrite": "/index.html",
     "exclude": ["/assets/*", "/css/*", "/js/*", "/vendor/*"]
   },
   "globalHeaders": {
