@@ -3,8 +3,7 @@
     "apiRuntime": "node:20"
   },
   "routes": [
-    { "route": "/api/contact", "methods": ["POST"] },
-    { "route": "/api/resume", "methods": ["GET"] }
+    { "route": "/api/contact", "methods": ["POST"] }
   ],
   "navigationFallback": {
     "rewrite": "/index.html",

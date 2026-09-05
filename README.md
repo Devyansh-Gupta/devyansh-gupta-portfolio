@@ -1,29 +1,35 @@
 # Devyansh Gupta — Portfolio
 
-Personal portfolio site. Plain HTML/CSS/JS, animated with [anime.js v4](https://animejs.com) (vendored, MIT), hosted on **Azure Static Web Apps** with managed Azure Functions for the contact form and resume download.
+Personal portfolio site. Plain HTML/CSS/JS, animated with [anime.js v4](https://animejs.com) (vendored, MIT), hosted on **Azure Static Web Apps** with a managed Azure Function for the contact form.
 
 ## Architecture
 
 ```
 index.html · css/ · js/ · vendor/anime.esm.js   static front end
-api/                                             managed functions (Node 20)
+assets/Devyansh_Gupta_Resume_DevOps_Intern.pdf  resume, served with the site
+api/                                            managed functions (Node 20)
   src/functions/contact.js   POST /api/contact → SMTP email (nodemailer)
-  src/functions/resume.js    GET  /api/resume  → 302 to Blob Storage + short-lived SAS
 staticwebapp.config.json     routes, headers, apiRuntime
 ```
 
-### Resume download (two options)
-**Option A — manual link (simplest):** paste your Azure Blob Storage
-pre-signed (SAS) URL into the `RESUME_URL` constant at the top of
-`js/main.js`. All three resume buttons will point straight at it.
+### Contact form
 
-**Option B — server-minted SAS:** keep the resume PDF in a **private** blob
-container; `/api/resume` mints a read-only, single-blob, HTTPS-only SAS valid
-~10 minutes and redirects the visitor — per Microsoft's SAS best practices
-(least privilege, short lifetime, no key in the browser).
+Form submissions try the managed function first (`POST /api/contact` —
+validates, honeypot-checks, rate-limits, then emails via SMTP); if that is
+not configured or fails, they fall back to [formsubmit.co](https://formsubmit.co)
+to the same inbox. Either way the message lands straight in your email —
+no database involved. Secrets live in SWA app settings, never in the repo.
 
-While neither is configured, buttons fall back to the bundled PDF at
-`/assets/Devyansh_Gupta_Resume_DevOps_Intern.pdf`.
+The fallback is activated once: the first submission triggers a
+"Activate Form" email to the recipient inbox — click that link and all
+future submissions deliver immediately.
+
+### Resume download
+
+The resume buttons link directly to the PDF bundled with the site
+(`/assets/Devyansh_Gupta_Resume_DevOps_Intern.pdf`) with a `download`
+attribute — no API, no storage account, no redirects. To update the resume,
+replace that file and commit.
 
 ## Required app settings (SWA → Configuration)
 
@@ -32,14 +38,11 @@ While neither is configured, buttons fall back to the bundled PDF at
 | `SMTP_HOST` / `SMTP_PORT` / `SMTP_SECURE` | SMTP relay (e.g. smtp.gmail.com / 587) |
 | `SMTP_USER` / `SMTP_PASS` | SMTP credentials (Gmail **app password**) |
 | `CONTACT_TO` | inbox that receives form messages |
-| `STORAGE_ACCOUNT` / `STORAGE_KEY` | storage account holding the resume blob |
-| `RESUME_CONTAINER` / `RESUME_BLOB` | e.g. `resume` / `Devyansh_Gupta_Resume_DevOps_Intern.pdf` |
-| `RESUME_SAS_MINUTES` | optional, default 10 |
 
 ## Local development
 
 ```bash
-# front end only (resume button falls back to /assets copy)
+# front end only
 npx serve .
 
 # with API (needs Azure Functions Core Tools + api/local.settings.json)
