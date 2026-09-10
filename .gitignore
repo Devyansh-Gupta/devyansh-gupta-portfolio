@@ -3,3 +3,6 @@ api/local.settings.json
 .env
 *.log
 .DS_Store
+
+# internal working files (report build, verification renders)
+.omh/
