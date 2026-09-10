@@ -1,0 +1,113 @@
+name: Deploy to class VM
+
+# Deploys the static site to the shared class VM via SSH + rsync.
+# DORMANT BY DESIGN: if the VM_* secrets are not configured yet, the guard
+# step skips the deploy cleanly (no red X's while we wait for the professor).
+#
+# Required repository secrets (Settings → Secrets and variables → Actions):
+#   VM_HOST        IP or hostname of the class VM
+#   VM_USER        SSH user (e.g. devyansh) — NOT root
+#   VM_SSH_KEY     private ED25519 key (single line "-----BEGIN ... END-----")
+#   VM_PORT        SSH port (usually 22)
+#   VM_KNOWN_HOSTS output of `ssh-keyscan -p <port> <host>` (pins the host key)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: vm-deploy
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04   # rsync 3.2.7 + openssh-client preinstalled
+    timeout-minutes: 10
+    steps:
+      - name: Guard — are VM secrets configured?
+        id: guard
+        env:
+          VM_HOST: ${{ secrets.VM_HOST }}
+        run: |
+          if [ -z "$VM_HOST" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "VM secrets not set yet — skipping VM deploy (dormant until the class VM is ready)."
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+
+      - name: Install SSH key and pin host key
+        if: steps.guard.outputs.skip != 'true'
+        env:
+          VM_SSH_KEY: ${{ secrets.VM_SSH_KEY }}
+          VM_KNOWN_HOSTS: ${{ secrets.VM_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VM_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$VM_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Rsync site to the VM
+        if: steps.guard.outputs.skip != 'true'
+        env:
+          VM_HOST: ${{ secrets.VM_HOST }}
+          VM_USER: ${{ secrets.VM_USER }}
+          VM_PORT: ${{ secrets.VM_PORT }}
+        run: |
+          rsync -az --delete \
+            -e "ssh -p ${VM_PORT} -o ConnectTimeout=15" \
+            --exclude='.git*' \
+            --exclude='.github' \
+            --exclude='.omh' \
+            --exclude='api' \
+            --exclude='scripts' \
+            --exclude='deploy' \
+            --exclude='node_modules' \
+            --exclude='staticwebapp.config.json' \
+            --exclude='README.md' \
+            ./ "${VM_USER}@${VM_HOST}":~/site/
+
+      - name: Publish into the web root (atomic symlink flip)
+        if: steps.guard.outputs.skip != 'true'
+        env:
+          VM_HOST: ${{ secrets.VM_HOST }}
+          VM_USER: ${{ secrets.VM_USER }}
+          VM_PORT: ${{ secrets.VM_PORT }}
+          DEPLOY_DIR: ${{ secrets.VM_WEBROOT }}
+        run: |
+          ssh -p "${VM_PORT}" -o ConnectTimeout=15 "${VM_USER}@${VM_HOST}" bash -s <<'EOF'
+          set -euo pipefail
+          WEBROOT="${DEPLOY_DIR:-$HOME/webroot}"
+          STAMP="$(date -u +%Y%m%d%H%M%S)"
+          # first run: bootstrap the directories
+          mkdir -p "$WEBROOT/releases"
+          # move the rsynced copy (~/site) into a timestamped release
+          rm -rf "$WEBROOT/releases/$STAMP"
+          mv "$HOME/site" "$WEBROOT/releases/$STAMP"
+          mkdir -p "$HOME/site"   # restore inbox for next rsync
+          # defensive: clear stale tmp state from an interrupted run, and
+          # recover if 'current' ever materialized as a real directory
+          rm -rf "$WEBROOT/current.tmp"
+          if [ ! -L "$WEBROOT/current" ] && [ -e "$WEBROOT/current" ]; then
+            rm -rf "$WEBROOT/current"
+          fi
+          # flip the 'current' symlink — atomic rename(2), never a half-copied state
+          ln -sfn "$WEBROOT/releases/$STAMP" "$WEBROOT/current.tmp"
+          mv -T "$WEBROOT/current.tmp" "$WEBROOT/current"
+          # keep the last 5 releases, garbage-collect the rest
+          ls -1dt "$WEBROOT/releases"/*/ | tail -n +6 | xargs -r rm -rf
+          echo "published release $STAMP"
+          EOF
+
+      - name: Show result URL
+        if: steps.guard.outputs.skip != 'true'
+        env:
+          VM_HOST: ${{ secrets.VM_HOST }}
+        run: echo "Deployment complete — site should be live on the class VM (${VM_HOST})."
