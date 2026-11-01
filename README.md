@@ -1,6 +1,6 @@
 # Devyansh Gupta — Portfolio
 
-Personal portfolio site. Plain HTML/CSS/JS, animated with [anime.js v4](https://animejs.com) (vendored, MIT), hosted on **Azure Static Web Apps** with a managed Azure Function for the contact form.
+Personal portfolio site. Plain HTML/CSS/JS, animated with [anime.js v4](https://animejs.com) (vendored, MIT), with a managed Azure Function for the contact form.
 
 ## Architecture
 
@@ -18,7 +18,7 @@ Form submissions try the managed function first (`POST /api/contact` —
 validates, honeypot-checks, rate-limits, then emails via SMTP); if that is
 not configured or fails, they fall back to [formsubmit.co](https://formsubmit.co)
 to the same inbox. Either way the message lands straight in your email —
-no database involved. Secrets live in SWA app settings, never in the repo.
+no database involved.
 
 The fallback is activated once: the first submission triggers a
 "Activate Form" email to the recipient inbox — click that link and all
@@ -48,6 +48,3 @@ npx serve .
 # with API (needs Azure Functions Core Tools + api/local.settings.json)
 cd api && npm install && npm start
 ```
-
-## Deployment
-Push to `main` → GitHub Actions (auto-created by Azure Static Web Apps) builds and deploys.
